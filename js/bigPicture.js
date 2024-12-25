@@ -55,6 +55,7 @@ const onLoadCommentsButtonClick = () => {
   renderComments();
 };
 
+
 const hideBigPicture = () => {
   bigPictureElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
@@ -65,9 +66,11 @@ const hideBigPicture = () => {
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (isEscapeKey(evt)) {
     hideBigPicture();
+    document.removeEventListener('keydown', onDocumentKeydown);
+    commentsLoaderElement.removeEventListener('click', onLoadCommentsButtonClick);
   }
 }
 
