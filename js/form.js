@@ -48,9 +48,10 @@ const hasUnidueTags = (value) => {
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey && !isTextFieldFocused()) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (isEscapeKey(evt) && !isTextFieldFocused()) {
     hideModal();
+    document.removeEventListener('keydown', onDocumentKeydown);
   }
 }
 
