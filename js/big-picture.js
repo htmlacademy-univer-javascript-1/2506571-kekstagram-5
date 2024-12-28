@@ -4,9 +4,9 @@ const COMMENTS_STEP = 5;
 const bigPictureElement = document.querySelector('.big-picture');
 const commentCountElement = bigPictureElement.querySelector('.social__comment-count');
 const commentListElement = bigPictureElement.querySelector('.social__comments');
-const commentsLoaderElement = bigPictureElement.querySelector('.comments-loader');
+const commentLoaderElement = bigPictureElement.querySelector('.comments-loader');
 const bodyElement = document.querySelector('body');
-const canselButtonElement = bigPictureElement.querySelector('.big-picture__cancel');
+const cancelButtonElement = bigPictureElement.querySelector('.big-picture__cancel');
 const bigPictureImage = bigPictureElement.querySelector('.big-picture__img img');
 const likesCount = bigPictureElement.querySelector('.likes-count');
 const pictureCaption = bigPictureElement.querySelector('.social__caption');
@@ -40,9 +40,9 @@ const renderComments = () => {
   commentsCount = (commentsCount > currentComments.length) ? currentComments.length : commentsCount;
 
   if (currentComments.length <= COMMENTS_STEP || commentsCount >= currentComments.length) {
-    commentsLoaderElement.classList.add('hidden');
+    commentLoaderElement.classList.add('hidden');
   } else {
-    commentsLoaderElement.classList.remove('hidden');
+    commentLoaderElement.classList.remove('hidden');
   }
 
   commentCountElement.innerHTML = `${commentsCount} из <span class="comments-count">${currentComments.length}</span> комментариев`;
@@ -70,7 +70,7 @@ function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     hideBigPicture();
     document.removeEventListener('keydown', onDocumentKeydown);
-    commentsLoaderElement.removeEventListener('click', onLoadCommentsButtonClick);
+    commentLoaderElement.removeEventListener('click', onLoadCommentsButtonClick);
   }
 }
 
@@ -91,10 +91,10 @@ const showBigPicture = (data) => {
   currentComments = comments.slice();
   renderComments();
 
-  commentsLoaderElement.addEventListener('click', onLoadCommentsButtonClick);
+  commentLoaderElement.addEventListener('click', onLoadCommentsButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-canselButtonElement.addEventListener('click', onCanselbuttonClick);
+cancelButtonElement.addEventListener('click', onCanselbuttonClick);
 
 export { showBigPicture };
