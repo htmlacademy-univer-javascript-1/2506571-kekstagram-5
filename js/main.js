@@ -1,10 +1,10 @@
-import { renderGallery } from './fullPhoto.js';
+import { renderGallery } from './full-photo.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 import { hideModal, setOnFormSubmit } from './form.js';
 import { getData, sendData } from './fetch.js';
 import { showAlert, debounce } from './util.js';
 import { init, getFilterPictures } from './filter.js';
-import './myPhoto.js';
+import './my-photo.js';
 
 try {
   init(await getData(), debounce(renderGallery));
